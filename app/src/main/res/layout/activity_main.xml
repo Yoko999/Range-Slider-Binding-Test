@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<data>
+    <variable
+        name="vm"
+        type="ru.yoequilibrium.testdatabindingrange.SliderViewModel" />
+</data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:stepSize="1.0"
+        android:valueFrom="@{vm.rangeMin}"
+        android:valueTo="@{vm.rangeMax}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:values="@={vm.sliderRange}" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_field_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/input_max_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_min_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="AUTOFILL_HINT_PHONE_NATIONAL"
+            android:digits="1234567890"
+            android:text="@={vm.floatingRangeMin}"
+            android:selectAllOnFocus="true"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="yes"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_max_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/input_field_login"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_max_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="AUTOFILL_HINT_PHONE_NATIONAL"
+            android:digits="1234567890"
+            android:imeOptions="actionDone"
+            android:selectAllOnFocus="true"
+            android:text="@={vm.floatingRangeMax}"
+            android:importantForAutofill="yes"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button android:id="@+id/btnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/input_max_price"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Тык"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
